@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Editable Table with ReactJS</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      input {
+        padding: 8px 12px;
+        border: none;
+      }
+
+      th {
+        padding: 8px 12px;
+      }
+
+      button {
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+      const initialData = [
+        {
+          id: 1,
+          name: "Onboarding Call",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 2,
+          name: "Google Search Console Access",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 3,
+          name: "Google Analytics Access",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 4,
+          name: "Website Access",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 5,
+          name: "Technical Audit",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 6,
+          name: "Anchor Text and Semantic Analysis",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 7,
+          name: "Competitor Analysis",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 8,
+          name: "Anchor Text/URL Mapping",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 9,
+          name: "Google Data Studio Report + Local Reporting Suite",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 10,
+          name: "Site Level Optimization",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 11,
+          name: "On page Optimizing",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 12,
+          name: "Content Creation",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 13,
+          name: "Content Publishing",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 14,
+          name: "Premium Press Release",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 15,
+          name: "Authority Niche Placements",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 16,
+          name: "Review Management",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 17,
+          name: "Index Links",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+        {
+          id: 18,
+          name: "Video Recap",
+          column1: "",
+          column2: "",
+          column3: "",
+          column4: "",
+          column5: "",
+          column6: "",
+        },
+      ];
+      function EditableTable() {
+        const [data, setData] = React.useState(initialData);
+
+        const handleEdit = (e, field, id) => {
+          const updatedData = data.map((item) => {
+            if (item.id === id) {
+              return { ...item, [field]: e.target.value };
+            }
+            return item;
+          });
+          setData(updatedData);
+        };
+
+        
+        const handleSubmit = () => {
+          console.log("Final Data: ", data);
+        };
+
+        return (
+          <div>
+            <table
+              border="1"
+              cellPadding="9"
+              style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead style={{ backgroundColor: "#f0f0f0" }}>
+                <tr>
+                  <th
+                    colSpan={7}
+                    style={{ textAlign: "left" }}>
+                    Month 1
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((row) => {
+                  const keys = Object.keys(row);
+                  return (
+                    <tr key={row.id}>
+                      {keys.map((key) => {
+                        if (key === "id") return null;
+                        return key === "name" ? (
+                          <td key={key} style={{ backgroundColor: "#f0f0f0", fontWeight: "bold", width: "350px" }}>
+                            <input
+                              type="text"
+                              value={row[key]}
+                              onChange={(e) => handleEdit(e, key, row.id)}
+                              readOnly
+                              style={{ backgroundColor: "#f0f0f0", width: "100%"}}
+                            />
+                          </td>
+                        ) : (
+                          <td key={key}>
+                            <input
+                              type="text"
+                              value={row[key]}
+                              onChange={(e) => handleEdit(e, key, row.id)}
+                            />
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <button
+              onClick={handleSubmit}
+              style={{ marginTop: "20px" }}>
+              Submit Data
+            </button>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<EditableTable />);
+    </script>
+  </body>
+</html>
+
+
+
